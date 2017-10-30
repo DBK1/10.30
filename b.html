@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+<div id="div2"></div>
+<script>
+    $(function(){
+        var id=window.location.href.split('=')[1];
+        if(id=="xw"){
+            $.ajax({
+                url:"http://localhost:3000/dbk/list",
+                type:"GET",
+                success:function(e){
+                    for(var i in e){
+                        $('#div2').append("<a href='b.html?id="+e[i].id+"'>"+e[i].name+"</a><br>")
+                    }
+                }
+            })
+        } else {
+            $.ajax({
+                url:"http://localhost:3000/dbk/xq",
+                type:"POST",
+                data:{"abc":id},
+                success:function(e){
+                    for(var i in e){
+                        $('#div2').append('<p>'+e[i].connet+'</p>')
+                    }
+                }
+            })
+        }
+    })
+</script>
+</body>
+
+</html>

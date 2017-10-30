@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+<div class="nav">
+    <a href="b.html?id=xw">点击获取列表</a>
+</div>
+<div id="div"></div>
+
+<script>
+    $(function(){
+        $.ajax({
+            url:"http://localhost:3000/dbk/list",
+            type:"GET",
+            success:function(e){
+//                console.log(e)
+                for(var i in e){
+                    $("#div").append("<a href='b.html?id="+e[i].id+"'>"+e[i].name+"</a><br>")
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
